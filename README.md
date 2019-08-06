@@ -63,7 +63,6 @@ Code is pretty ad hoc at the moment and in general need of a cleanup. Different 
 
 Other things:
 
-* Add more specific metadata support for mobi and fb2
 * Guess alternately-named `content.opf` files
 * Figure out cross-platform way of opening images in default viewer (current kludge is hard-coded to open image folder in Gwenview since `xdg-open` doesn't play nicely with cleaning up temporary files after viewing)
 

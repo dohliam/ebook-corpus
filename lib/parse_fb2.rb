@@ -57,6 +57,33 @@ def parse_fb2(ebook, options)
     puts "  Publisher: ".bold + publisher
     puts "  ISBN: ".bold + isbn
     puts "  Description: ".bold + description
+    exit
+  end
+
+  # print individual metadata
+  if options[:title]
+    puts title
+    exit
+  end
+  if options[:author]
+    puts author
+    exit
+  end
+  if options[:language]
+    puts language
+    exit
+  end
+  if options[:publisher]
+    puts publisher
+    exit
+  end
+  if options[:isbn]
+    puts isbn
+    exit
+  end
+  if options[:description]
+    puts description
+    exit
   end
 
   if options[:text]
