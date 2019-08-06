@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require_relative 'parse_epub.rb'
 require_relative 'parse_fb2.rb'
 require_relative 'parse_mobi.rb'

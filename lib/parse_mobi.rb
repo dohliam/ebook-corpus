@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 require 'base64'
 require 'fileutils'
 require 'nokogiri'
@@ -43,18 +41,6 @@ def parse_mobi(ebook, options)
 
   images = Dir.glob(img_dir + "*")
 
-#   html_doc = Nokogiri::HTML(File.read(html))
-#   puts html_doc.text
-
-#   if options[:text]
-#     puts `w3m #{html}`
-#   end
-
-#   puts `w3m -dump -T text/html -cols 10000 #{html}`
-#   puts `w3m -cols 1000 #{html}`
-##   unpacked mobi folder contains:
-##   filename.html  filename.ncx  filename.opf  images
-
   # extract all contents if option --all is set
   if options[:all]
     dir = folder_name + "mobi/"
@@ -79,7 +65,6 @@ def parse_mobi(ebook, options)
 
   # read xml from content.opf
     xml = Nokogiri::XML(File.read(opf))
-#     puts xml
     ns = xml.collect_namespaces
     if xml.at('//dc:title', ns)
       title = xml.at('//dc:title', ns).text
@@ -109,7 +94,6 @@ def parse_mobi(ebook, options)
     elsif xml.at('//dc:Description', ns)
       description = xml.at('//dc:Description', ns).text
     end
-#       puts xml.at('//dc:creator[opf:role="aut"]', ns).text
 
   # print metadata
   if options[:metadata]
@@ -172,7 +156,6 @@ def parse_mobi(ebook, options)
       File.open(filename, "w") {|f| f << txt }
     else
       puts `w3m #{html}`
-#       puts html_doc.text
     end
   end
 

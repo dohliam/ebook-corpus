@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 require 'base64'
 require 'fileutils'
 require 'nokogiri'
@@ -24,8 +22,6 @@ def parse_fb2(ebook, options)
   fbook = File.read(ebook)
 
   xml = Nokogiri::HTML(fbook)
-  # puts xml.xpath('//lang').text
-  # puts xml.xpath('//last-name')
 
   title = xml.xpath('//book-title').text
   last_name = xml.xpath('//author//last-name').text

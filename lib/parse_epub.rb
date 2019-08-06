@@ -47,9 +47,9 @@ def parse_epub(zipfilename, options)
         @title = xml.at('//dc:title', ns).text
         @language = xml.at('//dc:language', ns).text
         @author = xml.at('//dc:creator', ns).text
-	if xml.at('//dc:publisher', ns)
+        if xml.at('//dc:publisher', ns)
           @publisher = xml.at('//dc:publisher', ns).text
-	end
+        end
         if xml.at('//dc:identifier[@opf:scheme="ISBN"]', ns)
           @isbn = xml.at('//dc:identifier[@opf:scheme="ISBN"]', ns).text
         end
@@ -62,10 +62,10 @@ def parse_epub(zipfilename, options)
       if basename.match(/^cover\.jpe*g$/i)
         if options[:cover]
           if options[:view]
-	    tmp = Tempfile.new([ "cover", ".jpg" ])
-	    tmp.binmode
-	    tmp.write entry.get_input_stream.read
-	    tmp.close
+            tmp = Tempfile.new([ "cover", ".jpg" ])
+            tmp.binmode
+            tmp.write entry.get_input_stream.read
+            tmp.close
 #             `xdg-open #{tmp.path}`
             `gwenview #{tmp.path}`
           else
