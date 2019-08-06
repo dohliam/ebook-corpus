@@ -157,6 +157,9 @@ def parse_mobi(ebook, options)
     else
       puts `w3m #{html}`
     end
+  else
+    html_doc = Nokogiri::HTML(File.read(html))
+    puts `w3m #{html}`
   end
 
   FileUtils.rm_rf(mobiunpack_dir)

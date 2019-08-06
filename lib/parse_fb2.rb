@@ -3,6 +3,14 @@ require 'fileutils'
 require 'nokogiri'
 require_relative 'common.rb'
 
+def extract_text(xml)
+  xml.xpath('//style').remove
+  xml.xpath('//stylesheet').remove
+  xml.xpath('//description').remove
+  xml.xpath('//binary').remove
+  xml
+end
+
 def parse_fb2(ebook, options)
   title = ""
   last_name = ""
@@ -52,11 +60,8 @@ def parse_fb2(ebook, options)
   end
 
   if options[:text]
-    xml.xpath('//style').remove
-    xml.xpath('//stylesheet').remove
-    xml.xpath('//description').remove
-    xml.xpath('//binary').remove
-    puts xml.text
+    book_text = extract_text(xml)
+    puts book_text.text
   end
 
   if options[:cover]
@@ -74,5 +79,8 @@ def parse_fb2(ebook, options)
       filename = xml.xpath('//binary').attr("id").text
       File.open(filename, "wb") {|f| f << decode }
     end
+  else
+    book_text = extract_text(xml)
+    puts book_text.text
   end
 end

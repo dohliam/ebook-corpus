@@ -189,5 +189,9 @@ def parse_epub(zipfilename, options)
     else
       puts html_doc.text
     end
+  else
+    html_doc = Nokogiri::HTML(html)
+    html_doc.xpath('//style').remove
+    puts html_doc.text
   end
 end
