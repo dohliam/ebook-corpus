@@ -46,7 +46,7 @@ def parse_epub(zipfilename, options)
         ns = xml.collect_namespaces
         @title = xml.at('//dc:title', ns).text
         @language = xml.at('//dc:language', ns).text
-        @author = xml.at('//dc:creator', ns).text
+        @author = xml.at('//dc:creator', ns) ? xml.at('//dc:creator', ns).text : "Unknown"
         if xml.at('//dc:publisher', ns)
           @publisher = xml.at('//dc:publisher', ns).text
         end
