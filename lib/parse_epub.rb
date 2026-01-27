@@ -28,7 +28,7 @@ def parse_epub(zipfilename, options)
 
 
   Zip::File.open(zipfilename) do |zipfile|
-    zipfile.each do |entry|
+    zipfile.sort_by { |file| file.name.naturalized }.each do |entry|
       basename = File.basename(entry.name)
       ext = File.extname(basename).downcase.gsub(/^\./, "")
 
@@ -172,7 +172,7 @@ def parse_epub(zipfilename, options)
 
   # output text only
   if options[:text]
-    html_doc = Nokogiri::HTML(html)
+    html_doc = Nokogiri::HTML(html.gsub(/<br *\/*>/, "\n"))
     html_doc.xpath('//style').remove
     if options[:pager]
       if `echo $PAGER`.chomp == ""
