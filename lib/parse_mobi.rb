@@ -30,9 +30,10 @@ def parse_mobi(ebook, options)
   new_mobi = mobiunpack_dir + sanitized_basename + ".mobi"
   FileUtils.mkdir_p tmp_dir
   FileUtils.cp mobi, new_mobi
-
-  script_dir = File.dirname(__FILE__)
-  `python vendor/mobiunpack_32.py #{new_mobi} #{tmp_dir}`
+  script_dir = File.dirname(File.expand_path $0)
+  py_script = "mobiunpack_32.py"
+  py_path = File.join(script_dir, "vendor", py_script)
+  `python "#{py_path}" #{new_mobi} #{tmp_dir}`
 
   html = tmp_dir + sanitized_basename + ".html"
   ncx = tmp_dir + sanitized_basename + ".ncx"
