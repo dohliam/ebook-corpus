@@ -4,6 +4,6 @@ class String
   end
 
   def naturalized
-    scan(/[^\d\.]+|[\d\.]+/).collect { |f| f.match(/\d+(\.\d+)?/) ? f.to_f : f }
+    scan(/\d+|\D+/).map { |part| part.match(/\d+/) ? part.to_i : part }
   end
 end
